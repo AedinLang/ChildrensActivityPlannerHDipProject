@@ -148,7 +148,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Activity.cs" />
-    <Compile Include="Models\EmptyModelToSeeIfICanCommit.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Kid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

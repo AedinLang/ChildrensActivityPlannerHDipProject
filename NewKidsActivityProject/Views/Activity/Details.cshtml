@@ -1,0 +1,82 @@
+﻿@model NewKidsActivityProject.Models.Activity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Activity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DayOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ActivityID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

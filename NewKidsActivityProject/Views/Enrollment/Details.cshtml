@@ -1,0 +1,42 @@
+﻿@model NewKidsActivityProject.Models.Enrollment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Enrollment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity.NameOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity.NameOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kid.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kid.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentDue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentDue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EnrollmentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

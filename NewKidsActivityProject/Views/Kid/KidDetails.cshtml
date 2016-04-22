@@ -1,0 +1,77 @@
+﻿@model NewKidsActivityProject.Models.Kid
+
+@{
+    ViewBag.Title = "KidDetails";
+}
+
+<h3>Details for: @Model.FirstName @Model.LastName </h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalIssues)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalIssues)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalIntervention)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalIntervention)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuardianFirstName)
+            @Html.DisplayNameFor(model => model.GuardianLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuardianFirstName)
+            @Html.DisplayFor(model => model.GuardianLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuardianContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuardianContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KidID }) |
+    @Html.ActionLink("Back to List", "AllKids")
+</p>
+
+

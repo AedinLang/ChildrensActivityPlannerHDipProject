@@ -15,6 +15,27 @@ namespace NewKidsActivityProject.Controllers
     {
         private ActivityContext db = new ActivityContext();
 
+        // GET: Activity Names - activity name only, use in dropdown list for Activity
+        public ActionResult AllActivities()
+        {
+               return View(db.Activities.ToList());
+        }
+
+        //GET: Activity Details - use when select activity from dropdown list/All activities
+        public ActionResult ActivityName(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
+            {
+                return HttpNotFound();
+            }
+            return View(activity);
+        }
+
         // GET: Activity
         public ActionResult Index()
         {

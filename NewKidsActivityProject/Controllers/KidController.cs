@@ -15,7 +15,26 @@ namespace NewKidsActivityProject.Controllers
     {
         private ActivityContext db = new ActivityContext();
 
-        // GET: Kid
+        public ActionResult AllKids()        //First name, last name and DOB only
+        {
+            return View(db.Kids.ToList());
+        }
+
+        public ActionResult KidDetails(int? id)     //All details for kid's name selected
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Kid kid = db.Kids.Find(id);
+            if (kid == null)
+            {
+                return HttpNotFound();
+            }
+            return View(kid);
+        }
+
+        // GET: Kid  - different view to AllKids
         public ActionResult Index()
         {
             return View(db.Kids.ToList());
@@ -34,6 +53,12 @@ namespace NewKidsActivityProject.Controllers
                 return HttpNotFound();
             }
             return View(kid);
+        }
+
+        //  Get: Kid/Remove - to remove a kid from the drop down menu
+        public ActionResult DropDownRemoveChild()
+        {
+            return View();
         }
 
         // GET: Kid/Create

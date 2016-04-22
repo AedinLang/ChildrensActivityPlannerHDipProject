@@ -15,38 +15,50 @@ namespace NewKidsActivityProject.Models
 
         [Required]
         [StringLength(20)]
+        [Display (Name ="Child")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(20)]
+        [Display (Name =" ")]       //To get desired format for kidDetails view
         public string LastName { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name ="Address")]
         public string Address { get; set; }
 
         [Required]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [Display(Name ="Date of birth")]
         public DateTime DOB { get; set; }
 
         [Required]
+        [Display (Name="Medical issues?")]
         public Medical MedicalIssues { get; set; }
 
         [Required]
+        [Display(Name ="Medical intervention?")]
         public FirstAid MedicalIntervention { get; set; }
 
         [Required]
         [StringLength(20)]
+        [Display(Name = "Guardian")]
         public string GuardianFirstName { get; set; }
 
         [Required]
         [StringLength(20)]
+        [Display(Name =" ")]
         public string GuardianLastName { get; set; }
 
         [Required]
         [StringLength(15)]
+        [Display (Name ="Contact number")]
         public string GuardianContactNumber { get; set; }
 
         [EmailAddress]
+        [Display(Name ="E-mail")]
         public string ContactEmail { get; set; }
 
         //Navigation properties

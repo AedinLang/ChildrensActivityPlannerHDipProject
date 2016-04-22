@@ -80,6 +80,7 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.KidID }) |
             @Html.ActionLink("Details", "Details", new { id=item.KidID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.KidID })
+            @Html.ActionLink(item.FirstName, "Details", new { id = item.KidID })
         </td>
     </tr>
 }

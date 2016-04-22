@@ -11,37 +11,47 @@ namespace NewKidsActivityProject.Models
     public class Activity
     {
         //auto properties
-        
+
         //Primary key
         public int ActivityID { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 5)]
+        [Display(Name ="Activity")]
         public string NameOfActivity { get; set; }
 
         [Required]
+        [Display(Name ="Day of week")]
         public Day DayOfActivity { get; set; }
 
         [Required]
+        [Display (Name="Time")]
+        [DisplayFormat(DataFormatString = "{0:H:mm}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
         public DateTime TimeOfActivity { get; set; }
 
         [Required]
+        [Display (Name ="Price for one term")]
         public decimal ActivityPrice { get; set; }
 
         [Required]
         [StringLength(15)]
+        [Display(Name = "Instructor")]
         public string InstructorFirstName { get; set; }
 
         [Required]
         [StringLength(15)]
+        [Display(Name =" ")]
         public string InstructorLastName { get; set; }
 
         [Required]
         [StringLength(15)]
+        [Display(Name ="Contact Number")]
         public string InstructorContactNumber { get; set; }
 
         [EmailAddress]
         [StringLength(25)]
+        [Display(Name ="E-mail")]
         public string InstructorEmail { get; set; }
 
 

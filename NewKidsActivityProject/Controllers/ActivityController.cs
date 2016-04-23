@@ -17,9 +17,32 @@ namespace NewKidsActivityProject.Controllers
 
         // GET: Activity Names - activity name only, use in dropdown list for Activity
         public ActionResult AllActivities()
-        {
-               return View(db.Activities.ToList());
+        {   
+              return View(db.Activities.ToList());
         }
+
+        // GET: Activity Names - activity name only, use in dropdown list for Activity
+        public ActionResult Enrollments()           //SAME CODE AS ABOVE MUST BE SOMEWAY OF CHOOSING WHICH "SECOND" VIEW TO GO TO BASED ON CONDITIONS
+        {
+            return View(db.Activities.ToList());
+        }
+
+        // GET: Enrollment details - use when select Activity Enrollment from Enrollments dropdown
+
+        public ActionResult EnrollmentsForActivity(int? id)
+        {
+            if(id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
+            {
+                return HttpNotFound();
+            }
+            return View(activity);
+        }
+
 
         //GET: Activity Details - use when select activity from dropdown list/All activities
         public ActionResult ActivityName(int? id)

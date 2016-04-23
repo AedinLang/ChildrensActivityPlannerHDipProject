@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NewKidsActivityProject.Models.Activity>
+
+@{
+    ViewBag.Title = "AllActivities";
+}
+
+
+<h2>Activity List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOfActivity)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.ActionLink(item.NameOfActivity, "EnrollmentsForActivity", new { id = item.ActivityID })
+            </td>
+        </tr>
+    }
+
+</table>

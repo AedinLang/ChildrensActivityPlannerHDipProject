@@ -15,6 +15,29 @@ namespace NewKidsActivityProject.Controllers
     {
         private ActivityContext db = new ActivityContext();
 
+        // GET: Activity Names - activity name only, use in dropdown list for Activity
+        public ActionResult AllActivitiesTakingEnrollments()
+        {
+            return View(db.Activities.ToList());
+        }
+
+        // GET: Details using activity ID for enrollments for this activity
+
+        public ActionResult EnrollmentsByActivityID(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Enrollment enrollment = db.Enrollments.Find(id);
+            if (enrollment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(enrollment);
+        }
+
+
         // GET: Enrollment
         public ActionResult Index()
         {

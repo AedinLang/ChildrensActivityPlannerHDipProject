@@ -54,6 +54,11 @@ namespace NewKidsActivityProject.Models
         [Display(Name ="E-mail")]
         public string InstructorEmail { get; set; }
 
+        [Required]
+        [StringLength(150)]
+        [Display(Name="Description")]
+        public string Description { get; set; }
+
 
         //navigation properties
         //one activity can have many enrollments - use ICollection

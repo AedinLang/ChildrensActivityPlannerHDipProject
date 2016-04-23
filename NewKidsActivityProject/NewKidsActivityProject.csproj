@@ -222,6 +222,8 @@
     <Content Include="Views\Kid\AllKids.cshtml" />
     <Content Include="Views\Kid\KidDetails.cshtml" />
     <Content Include="Views\Kid\DropDownRemoveChild.cshtml" />
+    <Content Include="Views\Activity\EnrollmentsForActivity.cshtml" />
+    <Content Include="Views\Activity\Enrollments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

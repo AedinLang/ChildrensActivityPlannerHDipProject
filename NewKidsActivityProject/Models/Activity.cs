@@ -17,7 +17,7 @@ namespace NewKidsActivityProject.Models
 
         [Required]
         [StringLength(20, MinimumLength = 5)]
-        [Display(Name ="Activity")]
+        [Display(Name ="Activity Name")]
         public string NameOfActivity { get; set; }
 
         [Required]
@@ -26,7 +26,7 @@ namespace NewKidsActivityProject.Models
 
         [Required]
         [Display (Name="Time")]
-        [DisplayFormat(DataFormatString = "{0:H:mm}")]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
         public DateTime TimeOfActivity { get; set; }
 

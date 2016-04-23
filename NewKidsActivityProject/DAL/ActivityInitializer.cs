@@ -11,10 +11,10 @@ namespace NewKidsActivityProject.DAL
             //Populate Child table
             var children = new List<Kid>
                 {
-                    new Kid {FirstName="Cathal",LastName="O'Sullivan",Address="9 Prospect Manor, Rathfarnham, Dublin 16",DOB=DateTime.Parse("2004-12-15"), MedicalIssues=Medical.no, MedicalIntervention=FirstAid.yes, GuardianFirstName="Gary", GuardianLastName="O'Sullivan",GuardianContactNumber="+353871111111",ContactEmail="garyosullivan@gmail.com" },
-                    new Kid {FirstName="Cillian",LastName="O'Brien",Address="23 College Drive, Terenure, Dublin 6W",DOB=DateTime.Parse("2000-10-09"), MedicalIssues=Medical.yes, MedicalIntervention=FirstAid.yes, GuardianFirstName="Fiona", GuardianLastName="O'Brien",GuardianContactNumber="+353872222222",ContactEmail="fionaobrien@hotmail.com" },
-                    new Kid {FirstName="Maeve",LastName="McDonagh",Address="12 Fosterbrook, Stillorgan, Co Dublin",DOB=DateTime.Parse("1998-06-06"), MedicalIssues=Medical.no, MedicalIntervention=FirstAid.yes, GuardianFirstName="Mark", GuardianLastName="McDonagh",GuardianContactNumber="+353853333333",ContactEmail="markmcdonagh@gmail.com" },
-                    new Kid {FirstName="Órla",LastName="O'Sullivan",Address="9 Prospect Manor, Rathfarnham, Dublin 16",DOB=DateTime.Parse("1999-04-30"), MedicalIssues=Medical.no, MedicalIntervention=FirstAid.yes, GuardianFirstName="Aedín", GuardianLastName="Lang",GuardianContactNumber="+3538765987",ContactEmail="aedinlang@eircom.net" }
+                    new Kid {FirstName="Cathal",LastName="O'Sullivan",Address="9 Prospect Manor, Rathfarnham, Dublin 16",DOB=DateTime.Parse("2004-12-15"), MedicalIssues=true, MedicalIntervention=true, GuardianFirstName="Gary", GuardianLastName="O'Sullivan",GuardianContactNumber="+353871111111",ContactEmail="garyosullivan@gmail.com" },
+                    new Kid {FirstName="Cillian",LastName="O'Brien",Address="23 College Drive, Terenure, Dublin 6W",DOB=DateTime.Parse("2000-10-09"), MedicalIssues=true, MedicalIntervention=true, GuardianFirstName="Fiona", GuardianLastName="O'Brien",GuardianContactNumber="+353872222222",ContactEmail="fionaobrien@hotmail.com" },
+                    new Kid {FirstName="Maeve",LastName="McDonagh",Address="12 Fosterbrook, Stillorgan, Co Dublin",DOB=DateTime.Parse("1998-06-06"), MedicalIssues=false, MedicalIntervention=true, GuardianFirstName="Mark", GuardianLastName="McDonagh",GuardianContactNumber="+353853333333",ContactEmail="markmcdonagh@gmail.com" },
+                    new Kid {FirstName="Órla",LastName="O'Sullivan",Address="9 Prospect Manor, Rathfarnham, Dublin 16",DOB=DateTime.Parse("1999-04-30"), MedicalIssues=false, MedicalIntervention=false, GuardianFirstName="Aedín", GuardianLastName="Lang",GuardianContactNumber="+3538765987",ContactEmail="aedinlang@eircom.net" }
 
                 };
 
@@ -39,12 +39,12 @@ namespace NewKidsActivityProject.DAL
             //Populate Enrollment table   NOT INITIALIZING TABLE FOR SOME REASON???
             var enrollments = new List<Enrollment>
             {
-                new Enrollment { KidID=1, ActivityID=3, PaymentDue=SubDue.no},
-                new Enrollment { KidID=0, ActivityID=1, PaymentDue=SubDue.yes },
-                new Enrollment { KidID=0, ActivityID=0, PaymentDue=SubDue.no },
-                new Enrollment { KidID=2, ActivityID=0, PaymentDue=SubDue.no },
-                new Enrollment { KidID=1, ActivityID=2, PaymentDue=SubDue.yes },
-                new Enrollment { KidID=2, ActivityID=6, PaymentDue=SubDue.no }
+                new Enrollment { KidID=1, ActivityID=3, PaymentDue=true},
+                new Enrollment { KidID=0, ActivityID=1, PaymentDue=true },
+                new Enrollment { KidID=0, ActivityID=0, PaymentDue=false },
+                new Enrollment { KidID=2, ActivityID=0, PaymentDue=true },
+                new Enrollment { KidID=1, ActivityID=2, PaymentDue=false },
+                new Enrollment { KidID=2, ActivityID=6, PaymentDue=false }
             };
 
             /*enrollments.ForEach(e => context.Enrollments.Add(e));

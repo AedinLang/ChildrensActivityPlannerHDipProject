@@ -2,8 +2,8 @@
 
 namespace NewKidsActivityProject.Models
 {
-    //enum for subscription due yes/no ?
-    public enum SubDue { yes, no }
+    /*//enum for subscription due yes/no ?
+    public enum SubDue { yes, no }*/
     public class Enrollment
     {
         //auto properties
@@ -20,7 +20,7 @@ namespace NewKidsActivityProject.Models
         public int ActivityID { get; set; }
 
         [Required]
-        public SubDue PaymentDue { get; set; }
+        public bool PaymentDue { get; set; }
 
 
         //Navigation properties

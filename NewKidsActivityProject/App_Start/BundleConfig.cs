@@ -25,7 +25,7 @@ namespace NewKidsActivityProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/darkly.css",            //Reference to darkly.css included here
+                      "~/Content/darkly.css",           //Reference to darkly.css included here
                       "~/Content/Site.css"
                       
                       ));

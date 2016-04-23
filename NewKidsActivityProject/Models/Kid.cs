@@ -4,55 +4,55 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NewKidsActivityProject.Models
 {
-    //enums for the Child Table Model
+    /*//enums for the Child Table Model
     public enum Medical { yes, no };
-    public enum FirstAid { yes, no };
+    public enum FirstAid { yes, no };*/
 
     public class Kid
     {
         //Auto properties - constraints to be applied
         public int KidID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter child's first name")]
         [StringLength(20)]
         [Display (Name ="Child")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required (ErrorMessage = "Enter child's second name")]
         [StringLength(20)]
         [Display (Name =" ")]       //To get desired format for kidDetails view
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter a valid address")]
         [StringLength(50)]
         [Display(Name ="Address")]
         public string Address { get; set; }
 
-        [Required]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [Required(ErrorMessage ="DOB must be yyyy/mm/dd format")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Display(Name ="Date of birth")]
         public DateTime DOB { get; set; }
 
         [Required]
         [Display (Name="Medical issues?")]
-        public Medical MedicalIssues { get; set; }
+        public bool MedicalIssues { get; set; }
 
         [Required]
         [Display(Name ="Medical intervention?")]
-        public FirstAid MedicalIntervention { get; set; }
+        public bool MedicalIntervention { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter guardian's first name")]
         [StringLength(20)]
         [Display(Name = "Guardian")]
         public string GuardianFirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter guardian's second name")]
         [StringLength(20)]
         [Display(Name =" ")]
         public string GuardianLastName { get; set; }
-
-        [Required]
+ 
+        [Required(ErrorMessage ="Enter a valid phone number")]
         [StringLength(15)]
         [Display (Name ="Contact number")]
         public string GuardianContactNumber { get; set; }

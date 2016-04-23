@@ -1,0 +1,82 @@
+﻿@model NewKidsActivityProject.Models.Activity
+
+@{
+    ViewBag.Title = "ActivityName";
+}
+
+<h3><u>Details for @Model.NameOfActivity</u></h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DayOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityPrice)
+        </dt>
+
+        <dd>
+            €@Html.DisplayFor(model => model.ActivityPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorFirstName)
+            @Html.DisplayNameFor(model => model.InstructorLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorFirstName)
+            @Html.DisplayFor(model => model.InstructorLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "AllActivities")       <!---Option to return to Activity List-->
+    <!---*****WORK OUT HOW TO PUT A LINK IN HERE TO CREATE FOR ENROLLMENT. LOOK AT ENROLLMENT FIRST****-->
+</p>

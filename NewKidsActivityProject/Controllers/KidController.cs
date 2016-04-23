@@ -20,7 +20,7 @@ namespace NewKidsActivityProject.Controllers
             return View(db.Kids.ToList());
         }
 
-        public ActionResult KidDetails(int? id)     //All details for kid's name selected
+        public ActionResult KidDetails(int? id)     //All details for kid's name selected including list of activities enrolled in
         {
             if (id == null)
             {
@@ -55,12 +55,7 @@ namespace NewKidsActivityProject.Controllers
             return View(kid);
         }
 
-        //  Get: Kid/Remove - to remove a kid from the drop down menu
-        public ActionResult DropDownRemoveChild()
-        {
-            return View();
-        }
-
+        
         // GET: Kid/Create
         public ActionResult Create()
         {
@@ -78,7 +73,7 @@ namespace NewKidsActivityProject.Controllers
             {
                 db.Kids.Add(kid);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AllKids");
             }
 
             return View(kid);
@@ -110,9 +105,15 @@ namespace NewKidsActivityProject.Controllers
             {
                 db.Entry(kid).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AllKids");
             }
             return View(kid);
+        }
+
+        //  Get: Kid/Remove - to remove a kid from the drop down menu
+        public ActionResult RemoveChild()
+        {
+            return View(db.Kids.ToList());
         }
 
         // GET: Kid/Delete/5
@@ -138,7 +139,7 @@ namespace NewKidsActivityProject.Controllers
             Kid kid = db.Kids.Find(id);
             db.Kids.Remove(kid);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AllKids");
         }
 
         protected override void Dispose(bool disposing)

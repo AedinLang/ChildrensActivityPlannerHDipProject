@@ -15,8 +15,8 @@ namespace NewKidsActivityProject.Models
         //Primary key
         public int ActivityID { get; set; }
 
-        [Required]
-        [StringLength(20, MinimumLength = 5)]
+        [Required(ErrorMessage ="An Activity Name required")]
+        [StringLength(20)]
         [Display(Name ="Activity Name")]
         public string NameOfActivity { get; set; }
 
@@ -24,37 +24,52 @@ namespace NewKidsActivityProject.Models
         [Display(Name ="Day of week")]
         public Day DayOfActivity { get; set; }
 
-        [Required]
+        /*[Required]
         [Display (Name="Time")]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
-        public DateTime TimeOfActivity { get; set; }
+        //[DisplayFormat(DataFormatString = "{0:HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm tt}")]*/
+        public DateTime? TimeOfActivity { get; set; }
+        [Required(ErrorMessage = "A time ia required")]
+        [Display (Name ="Time")]
+        [RegularExpression(@"^(0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$", ErrorMessage = "Invalid time")]
+        public string TimeOfActivityValue
+        {
+            get
+            {
+                return TimeOfActivity.HasValue ? TimeOfActivity.Value.ToString("hh:mm tt") : string.Empty;
+            }
 
-        [Required]
+            set
+            {
+                TimeOfActivity = DateTime.Parse(value);
+            }
+        }
+
+        [Required(ErrorMessage ="A price is required")]
         [Display (Name ="Price for one term")]
         public decimal ActivityPrice { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Instructor first name required")]
         [StringLength(15)]
         [Display(Name = "Instructor")]
         public string InstructorFirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Instructor second name required")]
         [StringLength(15)]
         [Display(Name =" ")]
         public string InstructorLastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Contact number required")]
         [StringLength(15)]
         [Display(Name ="Contact Number")]
         public string InstructorContactNumber { get; set; }
 
-        [EmailAddress]
+        [EmailAddress(ErrorMessage ="E-mail required")]
         [StringLength(25)]
         [Display(Name ="E-mail")]
         public string InstructorEmail { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Brief description required")]
         [StringLength(150)]
         [Display(Name="Description")]
         public string Description { get; set; }

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<NewKidsActivityProject.Models.Activity>
+
+@{
+    ViewBag.Title = "AllActivities";
+}
+
+
+<h1> </h1>
+<h3><u>Select the Activity to be edited</u></h3>
+<h1> </h1>
+
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.ActionLink(item.NameOfActivity, "Edit", new { id = item.ActivityID })
+            </td>
+        </tr>
+    }
+
+
+</table>
+

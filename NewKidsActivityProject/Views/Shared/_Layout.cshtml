@@ -52,7 +52,8 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li>@Html.ActionLink("List all activities", "AllActivities", "Activity")</li>
                                 <li>@Html.ActionLink("Add activity", "Create", "Activity")</li>
-                                <li>@Html.ActionLink("Delete activity","Delete","Activity")</li>
+                                <li>@Html.ActionLink("Remove activity","RemoveActivity","Activity")</li>
+                                <li>@Html.ActionLink("Edit activity", "EditActivity", "Activity")</li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -61,6 +62,7 @@
                                 <li>@Html.ActionLink("List all children", "AllKids", "Kid")</li>
                                 <li>@Html.ActionLink("Add child", "Create", "Kid")</li>
                                 <li>@Html.ActionLink("Remove child", "RemoveChild", "Kid")</li>
+                                <li>@Html.ActionLink("Edit child", "EditChild", "Kid")</li>
                             </ul>
                         </li>
                         </li>

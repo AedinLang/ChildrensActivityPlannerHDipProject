@@ -4,7 +4,7 @@
     ViewBag.Title = "KidDetails";
 }
 
-<h3>Details for: @Model.FirstName @Model.LastName </h3>
+<h3><u>Details for: @Model.FirstName @Model.LastName</u></h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -84,8 +84,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "AllKids")|
-    @Html.ActionLink("Edit", "Edit", new { id = Model.KidID }) |
+    @Html.ActionLink("Back to List", "AllKids") | 
+    @Html.ActionLink("Edit Child", "Edit", new { id = Model.KidID }) |
     @Html.ActionLink("Remove Child", "Delete", new { id = Model.KidID })
 </p>
 

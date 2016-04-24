@@ -1,7 +1,7 @@
 ﻿@model NewKidsActivityProject.Models.Activity
 
 @{
-    ViewBag.Title = "ActivityName";
+    ViewBag.Title = "ActivityDetails";
 }
 
 <h3><u>Details for @Model.NameOfActivity</u></h3>
@@ -26,11 +26,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TimeOfActivity)
+            @Html.DisplayNameFor(model => model.TimeOfActivityValue)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TimeOfActivity)
+            @Html.DisplayFor(model => model.TimeOfActivityValue)
         </dd>
 
         <dt>
@@ -77,6 +77,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "AllActivities")       <!---Option to return to Activity List-->
+    @Html.ActionLink("Back to List", "AllActivities") | 
+    @Html.ActionLink("Edit Activity", "Edit", new { id = Model.ActivityID }) | 
+    @Html.ActionLink("Remove Activity", "Delete", new { id = Model.ActivityID })
+
     <!---*****WORK OUT HOW TO PUT A LINK IN HERE TO CREATE FOR ENROLLMENT. LOOK AT ENROLLMENT FIRST****-->
 </p>

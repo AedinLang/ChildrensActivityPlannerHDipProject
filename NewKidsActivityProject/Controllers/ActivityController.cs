@@ -45,7 +45,7 @@ namespace NewKidsActivityProject.Controllers
 
 
         //GET: Activity Details - use when select activity from dropdown list/All activities
-        public ActionResult ActivityName(int? id)
+        public ActionResult ActivityDetails(int? id)
         {
             if (id == null)
             {
@@ -79,7 +79,7 @@ namespace NewKidsActivityProject.Controllers
             }
             return View(activity);
         }
-
+        
         // GET: Activity/Create
         public ActionResult Create()
         {
@@ -91,16 +91,22 @@ namespace NewKidsActivityProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ActivityID,NameOfActivity,DayOfActivity,TimeOfActivity,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail")] Activity activity)
+        public ActionResult Create([Bind(Include = "ActivityID,NameOfActivity,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Activities.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AllActivities");
             }
 
             return View(activity);
+        }
+
+        //  Get: Activity/Edit - to edit an activity from the drop down menu
+        public ActionResult EditActivity()
+        {
+            return View(db.Activities.ToList());
         }
 
         // GET: Activity/Edit/5
@@ -123,16 +129,23 @@ namespace NewKidsActivityProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ActivityID,NameOfActivity,DayOfActivity,TimeOfActivity,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail")] Activity activity)
+        public ActionResult Edit([Bind(Include = "ActivityID,NameOfActivity,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AllActivities");
             }
             return View(activity);
         }
+
+        //  Get: Activity/Remove - to remove an activity from the drop down menu
+        public ActionResult RemoveActivity()
+        {
+            return View(db.Activities.ToList());
+        }
+
 
         // GET: Activity/Delete/5
         public ActionResult Delete(int? id)
@@ -157,7 +170,7 @@ namespace NewKidsActivityProject.Controllers
             Activity activity = db.Activities.Find(id);
             db.Activities.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AllActivities");
         }
 
         protected override void Dispose(bool disposing)

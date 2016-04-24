@@ -20,6 +20,7 @@ namespace NewKidsActivityProject.Models
         public int ActivityID { get; set; }
 
         [Required]
+        [Display (Name = "Payment Made")]
         public bool PaymentDue { get; set; }
 
 

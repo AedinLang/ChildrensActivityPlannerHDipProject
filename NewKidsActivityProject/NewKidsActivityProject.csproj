@@ -227,6 +227,7 @@
     <Content Include="Views\Activity\RemoveActivity.cshtml" />
     <Content Include="Views\Kid\EditChild.cshtml" />
     <Content Include="Views\Activity\EditActivity.cshtml" />
+    <Content Include="Views\Enrollment\EditEnrollment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

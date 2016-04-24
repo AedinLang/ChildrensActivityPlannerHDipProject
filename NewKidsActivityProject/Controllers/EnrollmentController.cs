@@ -15,33 +15,10 @@ namespace NewKidsActivityProject.Controllers
     {
         private ActivityContext db = new ActivityContext();
 
-        // GET: Activity Names - activity name only, use in dropdown list for Activity
-        public ActionResult AllActivitiesTakingEnrollments()
-        {
-            return View(db.Activities.ToList());
-        }
-
-        // GET: Details using activity ID for enrollments for this activity
-
-        public ActionResult EnrollmentsByActivityID(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Enrollment enrollment = db.Enrollments.Find(id);
-            if (enrollment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(enrollment);
-        }
-
-
         // GET: Enrollment
         public ActionResult Index()
         {
-            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid);
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid);          //Tying Activity & Kid entity to Enrollments db
             return View(enrollments.ToList());
         }
 
@@ -64,7 +41,7 @@ namespace NewKidsActivityProject.Controllers
         public ActionResult Create()
         {
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity");
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FirstName");
+            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName");
             return View();
         }
 
@@ -83,8 +60,15 @@ namespace NewKidsActivityProject.Controllers
             }
 
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FirstName", enrollment.KidID);
+            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
             return View(enrollment);
+        }
+
+        // GET: Enrollment
+        public ActionResult EditEnrollment()
+        {
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid);          //Tying Activity & Kid entity to Enrollments db
+            return View(enrollments.ToList());
         }
 
         // GET: Enrollment/Edit/5

@@ -23,6 +23,15 @@ namespace NewKidsActivityProject.Models
         [Display (Name =" ")]       //To get desired format for kidDetails view
         public string LastName { get; set; }
 
+        //Property to combine FirstName,LasName and DOB to identify unique child for Create Enrollment in EnrollmentController 
+        public string Fullname
+        {
+            get
+            {
+                return string.Format("{0} {1}, {2}", FirstName, LastName, DOB.ToString("d"));
+            }
+        }
+
         [Required(ErrorMessage = "Enter a valid address")]
         [StringLength(50)]
         [Display(Name ="Address")]

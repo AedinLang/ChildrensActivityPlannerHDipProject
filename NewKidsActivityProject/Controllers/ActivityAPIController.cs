@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -14,16 +8,18 @@ using NewKidsActivityProject.Models;
 
 namespace NewKidsActivityProject.Controllers
 {
+    [RoutePrefix("activities")]
     public class ActivityAPIController : ApiController
     {
         private ActivityContext db = new ActivityContext();
 
+        [Route("all")]
         // GET: api/ActivityAPI
-        public IQueryable<Activity> GetActivities()
+        public IHttpActionResult GetAllActivities()
         {
-            return db.Activities;
+            return Ok(db.Activities.ToList());
         }
-
+        [Route("id/{id:int}")]
         // GET: api/ActivityAPI/5
         [ResponseType(typeof(Activity))]
         public async Task<IHttpActionResult> GetActivity(int id)
@@ -37,70 +33,16 @@ namespace NewKidsActivityProject.Controllers
             return Ok(activity);
         }
 
-        // PUT: api/ActivityAPI/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutActivity(int id, Activity activity)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != activity.ActivityID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(activity).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ActivityExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/ActivityAPI
+        [Route("activityName/{NameOfActivity}")]
         [ResponseType(typeof(Activity))]
-        public async Task<IHttpActionResult> PostActivity(Activity activity)
+        public async Task<IHttpActionResult> GetActivityByName(String nameOfActivity)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Activities.Add(activity);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = activity.ActivityID }, activity);
-        }
-
-        // DELETE: api/ActivityAPI/5
-        [ResponseType(typeof(Activity))]
-        public async Task<IHttpActionResult> DeleteActivity(int id)
-        {
-            Activity activity = await db.Activities.FindAsync(id);
-            if (activity == null)
+            var activityName = await db.Activities.FindAsync(nameOfActivity);
+            if (activityName == null)
             {
                 return NotFound();
             }
-
-            db.Activities.Remove(activity);
-            await db.SaveChangesAsync();
-
-            return Ok(activity);
+            return Ok(activityName);
         }
 
         protected override void Dispose(bool disposing)

@@ -6,9 +6,11 @@ namespace NewKidsActivityProject.DAL
 {
     public class ActivityContext : DbContext
     {
+
         public ActivityContext() : base("ActivityContext")
         {
            Database.SetInitializer<ActivityContext>(new DropCreateDatabaseAlways<ActivityContext>());
+           base.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Kid> Kids { get; set; }

@@ -14,17 +14,19 @@ using NewKidsActivityProject.Models;
 
 namespace NewKidsActivityProject.Controllers
 {
+    //[RoutePrefix("enrollments")]
     public class EnrollmentAPIController : ApiController
     {
         private ActivityContext db = new ActivityContext();
-
-        // GET: api/EnrollmentAPI
-        public IQueryable<Enrollment> GetEnrollments()
+        [Route("all")]
+        // GET: enrolments/all
+        public IHttpActionResult GetAllEnrollments()
         {
-            return db.Enrollments;
+            return Ok(db.Enrollments.ToList());
         }
 
         // GET: api/EnrollmentAPI/5
+        [Route("id/{id:int}")]
         [ResponseType(typeof(Enrollment))]
         public async Task<IHttpActionResult> GetEnrollment(int id)
         {

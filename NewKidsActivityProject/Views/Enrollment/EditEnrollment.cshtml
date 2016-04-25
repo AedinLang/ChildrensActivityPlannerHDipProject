@@ -31,11 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Activity.NameOfActivity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Kid.FirstName)
-                @Html.DisplayFor(modelItem => item.Kid.LastName)
-            </td>
+                @Html.ActionLink(item.Kid.FirstName + item.Kid.LastName, "Edit", new { id = item.EnrollmentID })                
             <td>
-                @Html.DisplayFor(modelItem => item.Kid.DOB.ToString("d"))
+                @Html.DisplayFor(modelItem => item.Kid.DOB)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentDue)

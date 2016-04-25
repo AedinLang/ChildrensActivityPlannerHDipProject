@@ -18,7 +18,7 @@ namespace NewKidsActivityProject.Controllers
         // GET: Enrollment
         public ActionResult Index()
         {
-            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid);          //Tying Activity & Kid entity to Enrollments db
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid).OrderBy(e=>e.Kid.LastName);       //Alphabetically sort by Kid lastname
             return View(enrollments.ToList());
         }
 
@@ -64,10 +64,10 @@ namespace NewKidsActivityProject.Controllers
             return View(enrollment);
         }
 
-        // GET: Enrollment
+        // GET: EditEnrollment - dropdown on Homescreen
         public ActionResult EditEnrollment()
         {
-            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid);          //Tying Activity & Kid entity to Enrollments db
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid).OrderBy(e=>e.Activity.NameOfActivity);     //Activities listed in alphabetical order
             return View(enrollments.ToList());
         }
 
@@ -84,11 +84,11 @@ namespace NewKidsActivityProject.Controllers
                 return HttpNotFound();
             }
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FirstName", enrollment.KidID);
+            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
             return View(enrollment);
         }
 
-        // POST: Enrollment/Edit/5
+        /*// POST: Enrollment/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -102,10 +102,24 @@ namespace NewKidsActivityProject.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FirstName", enrollment.KidID);
+            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
+            return View(enrollment);
+        }*/
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "EnrollmentID,KidID,ActivityID,PaymentDue")] Enrollment enrollment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(enrollment).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
+            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
             return View(enrollment);
         }
-
         // GET: Enrollment/Delete/5
         public ActionResult Delete(int? id)
         {

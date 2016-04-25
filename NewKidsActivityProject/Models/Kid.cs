@@ -37,8 +37,9 @@ namespace NewKidsActivityProject.Models
         [Display(Name ="Address")]
         public string Address { get; set; }
 
-        [Required(ErrorMessage ="DOB must be yyyy/mm/dd format")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [Required(ErrorMessage ="DOB must be dd/mm/yyyy format")]
+        [DataType(DataType.Date)]   //gives drop down calender
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Display(Name ="Date of birth")]
         public DateTime DOB { get; set; }

@@ -106,20 +106,43 @@ namespace NewKidsActivityProject.Controllers
             return View(enrollment);
         }*/
 
-        [HttpPost]
+        // POST: Enrollment/Edit
+        //This code allows update of the PaymentDue field only. This is the only field in an enrollment that should be edited.
+
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EnrollmentID,KidID,ActivityID,PaymentDue")] Enrollment enrollment)
+        public ActionResult EditPost(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(enrollment).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
-            return View(enrollment);
+            var enrollmentToUpdate = db.Enrollments.Find(id);
+            if (TryUpdateModel(enrollmentToUpdate, "",
+               new string[] { "KidID", "ActivityID", "PaymentDue" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(enrollmentToUpdate);
         }
+
+        // GET: DeleteEnrollment - dropdown on Homescreen
+        public ActionResult DeleteEnrollment()
+        {
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid).OrderBy(e => e.Activity.NameOfActivity);     //Activities listed in alphabetical order
+            return View(enrollments.ToList());
+        }
+
         // GET: Enrollment/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -143,7 +166,7 @@ namespace NewKidsActivityProject.Controllers
             Enrollment enrollment = db.Enrollments.Find(id);
             db.Enrollments.Remove(enrollment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");      
         }
 
         protected override void Dispose(bool disposing)

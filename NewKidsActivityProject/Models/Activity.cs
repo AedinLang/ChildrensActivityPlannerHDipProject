@@ -31,7 +31,8 @@ namespace NewKidsActivityProject.Models
         public DateTime? TimeOfActivity { get; set; }
         [Required(ErrorMessage = "A time ia required")]
         [Display (Name ="Time")]
-        [RegularExpression(@"^(0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$", ErrorMessage = "Invalid time")]
+        //[RegularExpression(@"^(0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$", ErrorMessage = "Invalid time")]
+        [DataType(DataType.Time)]
         public string TimeOfActivityValue
         {
             get

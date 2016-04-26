@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewKidsActivityProject.Models
 {
@@ -13,6 +14,7 @@ namespace NewKidsActivityProject.Models
         //auto properties
 
         //Primary key
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ActivityID { get; set; }
 
         [Required(ErrorMessage ="An Activity Name required")]

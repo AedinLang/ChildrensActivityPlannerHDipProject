@@ -158,6 +158,8 @@
     <Compile Include="Controllers\KidController.cs" />
     <Compile Include="DAL\ActivityContext.cs" />
     <Compile Include="DAL\ActivityInitializer.cs" />
+    <Compile Include="DTOs\ActivityDetailsDTO.cs" />
+    <Compile Include="DTOs\KidDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,7 +190,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -219,7 +223,6 @@
     <Content Include="Views\Kid\Index.cshtml" />
     <Content Include="Views\Activity\AllActivities.cshtml" />
     <Content Include="Views\Activity\ActivityDetails.cshtml" />
-    <Content Include="Views\Kid\AllKids.cshtml" />
     <Content Include="Views\Kid\KidDetails.cshtml" />
     <Content Include="Views\Activity\EnrollmentsForActivity.cshtml" />
     <Content Include="Views\Activity\Enrollments.cshtml" />
@@ -228,6 +231,7 @@
     <Content Include="Views\Kid\EditChild.cshtml" />
     <Content Include="Views\Activity\EditActivity.cshtml" />
     <Content Include="Views\Enrollment\EditEnrollment.cshtml" />
+    <Content Include="Views\Kid\AllKids.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

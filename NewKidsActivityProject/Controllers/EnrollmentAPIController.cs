@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Routing;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -14,10 +15,14 @@ using NewKidsActivityProject.Models;
 
 namespace NewKidsActivityProject.Controllers
 {
-    //[RoutePrefix("enrollments")]
+    [RoutePrefix("enrolments")]
     public class EnrollmentAPIController : ApiController
     {
         private ActivityContext db = new ActivityContext();
+        public EnrollmentAPIController()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+        }
         [Route("all")]
         // GET: enrolments/all
         public IHttpActionResult GetAllEnrollments()
@@ -38,71 +43,29 @@ namespace NewKidsActivityProject.Controllers
 
             return Ok(enrollment);
         }
-
-        // PUT: api/EnrollmentAPI/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutEnrollment(int id, Enrollment enrollment)
+        //public class activitiesPerChild
+        //{
+        //    public string NameOfActivity{get;set;}
+            
+        //}
+        //GET: enrolments/allActivities     ///need to work on linq query,  array of string,   serialize issues
+        [Route("allActivities")]
+        [HttpGet]
+        public IHttpActionResult AllActivitiesForChild()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var activitiesPerChild = (from k in db.Kids
+                                      join e in db.Enrollments on k.KidID equals e.KidID
+                                      join a in db.Activities on e.ActivityID equals a.ActivityID
+                                      where a.NameOfActivity != null
+                                      //select new { e.EnrollmentID, e.PaymentDue }).ToList();
+                                      select  (a.NameOfActivity.Count()) );
 
-            if (id != enrollment.EnrollmentID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(enrollment).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EnrollmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/EnrollmentAPI
-        [ResponseType(typeof(Enrollment))]
-        public async Task<IHttpActionResult> PostEnrollment(Enrollment enrollment)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Enrollments.Add(enrollment);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = enrollment.EnrollmentID }, enrollment);
-        }
-
-        // DELETE: api/EnrollmentAPI/5
-        [ResponseType(typeof(Enrollment))]
-        public async Task<IHttpActionResult> DeleteEnrollment(int id)
-        {
-            Enrollment enrollment = await db.Enrollments.FindAsync(id);
-            if (enrollment == null)
+            if (activitiesPerChild == null)
             {
                 return NotFound();
             }
 
-            db.Enrollments.Remove(enrollment);
-            await db.SaveChangesAsync();
-
-            return Ok(enrollment);
+            return Ok(activitiesPerChild.ToList());
         }
 
         protected override void Dispose(bool disposing)

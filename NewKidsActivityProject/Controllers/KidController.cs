@@ -11,9 +11,9 @@ namespace NewKidsActivityProject.Controllers
     {
         private ActivityContext db = new ActivityContext();
 
-        public ActionResult AllKids()        //First name, last name and DOB only
+        public ActionResult AllKids()        //First name, last name and DOB only, order by LastName
         {
-            return View(db.Kids.ToList());
+            return View(db.Kids.ToList().OrderBy(k=>k.LastName));
         }
 
         public ActionResult KidDetails(int? id)     //All details for kid's name selected including list of activities enrolled in

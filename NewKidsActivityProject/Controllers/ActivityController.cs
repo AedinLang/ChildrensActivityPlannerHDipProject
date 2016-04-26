@@ -18,7 +18,7 @@ namespace NewKidsActivityProject.Controllers
         // GET: Activity Names - activity name only, use in dropdown list for Activity
         public ActionResult AllActivities()
         {   
-              return View(db.Activities.ToList());
+              return View(db.Activities.ToList().OrderBy(a=>a.NameOfActivity));
         }
 
         // GET: Activity Names - activity name only, use in dropdown list for Activity
@@ -97,7 +97,7 @@ namespace NewKidsActivityProject.Controllers
             {
                 db.Activities.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("AllActivities");
+                return RedirectToAction("ActivityDetails", new { id = activity.ActivityID });
             }
 
             return View(activity);
@@ -135,7 +135,7 @@ namespace NewKidsActivityProject.Controllers
             {
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("AllActivities");
+                return RedirectToAction("ActivityDetails", new { id = activity.ActivityID });
             }
             return View(activity);
         }

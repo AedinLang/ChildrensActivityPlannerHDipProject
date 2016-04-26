@@ -199,7 +199,6 @@ C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsAc
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject\bin\System.Net.Http.Formatting.xml
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject\bin\System.Web.Http.xml
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject\bin\System.Web.Http.WebHost.xml
-C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject\obj\Debug\NewKidsActivityProject.csprojResolveAssemblyReference.cache
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject\obj\Debug\NewKidsActivityProject.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject\obj\Debug\NewKidsActivityProject.pdb
 D:\MiniProject\ChildrensActivityPlannerHDipProject\NewKidsActivityProject\obj\Debug\NewKidsActivityProject.csprojResolveAssemblyReference.cache
@@ -254,3 +253,4 @@ D:\MiniProject\ChildrensActivityPlannerHDipProject\NewKidsActivityProject\bin\Ne
 D:\MiniProject\ChildrensActivityPlannerHDipProject\NewKidsActivityProject\bin\System.Net.Http.Formatting.xml
 D:\MiniProject\ChildrensActivityPlannerHDipProject\NewKidsActivityProject\bin\System.Web.Http.xml
 D:\MiniProject\ChildrensActivityPlannerHDipProject\NewKidsActivityProject\bin\System.Web.Http.WebHost.xml
+C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject\obj\Debug\NewKidsActivityProject.csprojResolveAssemblyReference.cache

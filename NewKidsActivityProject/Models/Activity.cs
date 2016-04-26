@@ -20,6 +20,10 @@ namespace NewKidsActivityProject.Models
         [Display(Name ="Activity Name")]
         public string NameOfActivity { get; set; }
 
+        [Required(ErrorMessage = "Indicate number of places in the class")]
+        [Display(Name="Places in class")]
+        public int Places { get; set; }
+
         [Required]
         [Display(Name ="Day of week")]
         public Day DayOfActivity { get; set; }

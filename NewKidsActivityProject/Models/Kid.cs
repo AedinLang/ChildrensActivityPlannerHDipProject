@@ -4,10 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NewKidsActivityProject.Models
 {
-    /*//enums for the Child Table Model
-    public enum Medical { yes, no };
-    public enum FirstAid { yes, no };*/
-
     public class Kid
     {
         //Auto properties - constraints to be applied
@@ -37,12 +33,20 @@ namespace NewKidsActivityProject.Models
         [Display(Name ="Address")]
         public string Address { get; set; }
 
-        [Required(ErrorMessage ="DOB must be dd/mm/yyyy format")]
+        [Required(ErrorMessage ="DOB value must be entered")]
         [DataType(DataType.Date)]   //gives drop down calender
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]      //DataFormatString has to appear like this for date to appear in edit mode in Chrome
         [Display(Name ="Date of birth")]
         public DateTime DOB { get; set; }
+
+        //use this property to get date in european format for Chrome
+        public string DOBInFormatWanted
+        {
+            get
+            {
+                return string.Format(DOB.ToString("d"));
+            }
+        }
 
         [Required]
         [Display (Name="Medical issues?")]

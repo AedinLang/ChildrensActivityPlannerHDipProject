@@ -22,7 +22,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DOB)
+            @Html.DisplayFor(model => model.DOBInFormatWanted)
         </dd>
 
         <dt>
@@ -86,7 +86,8 @@
 <p>
     @Html.ActionLink("Back to List", "AllKids") | 
     @Html.ActionLink("Edit Child", "Edit", new { id = Model.KidID }) |
-    @Html.ActionLink("Remove Child", "Delete", new { id = Model.KidID })
+    @Html.ActionLink("Remove Child", "Delete", new { id = Model.KidID })|
+    @Html.ActionLink("Enroll in activity", "Create", "Enrollment", new { id=Model.KidID}, null)
 </p>
 
 

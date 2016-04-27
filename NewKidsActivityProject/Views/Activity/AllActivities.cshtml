@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NewKidsActivityProject.Models.Activity>
+
+@{
+    ViewBag.Title = "AllActivities";
+}
+
+
+<h1> </h1>
+<h3><u>List of all Activities</u></h3>
+<h1> </h1>
+<h4>Select an Activity to review it's details</h4>
+<h1></h1>
+
+<table class="table-bordered">
+    <tr>
+        <th>
+            <u>@Html.DisplayNameFor(Model => Model.NameOfActivity)</u>
+            <p>  </p>
+        </th>
+        <th>
+            <u>@Html.DisplayNameFor(Model => Model.Description)</u>
+            <p> </p>
+        </th>
+    </tr>
+   
+    @foreach (var item in Model)
+    {
+        <tr>
+           
+            <td>
+                @Html.ActionLink(item.NameOfActivity, "ActivityDetails", new { id = item.ActivityID }) 
+                <p> </p>    
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+                <p> </p>
+            </td>
+        </tr>
+    }
+
+    
+</table>

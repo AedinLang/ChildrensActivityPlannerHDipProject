@@ -23,6 +23,7 @@ namespace NewKidsActivityProject.Controllers
         {
             db.Configuration.ProxyCreationEnabled = false;
         }
+
         [Route("all")]
         // GET: enrolments/all
         public IHttpActionResult GetAllEnrollments()

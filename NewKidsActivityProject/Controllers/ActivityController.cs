@@ -91,7 +91,7 @@ namespace NewKidsActivityProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ActivityID,NameOfActivity,Places,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
+        public ActionResult Create([Bind(Include = "ActivityID,Places,NameOfActivity,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace NewKidsActivityProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ActivityID,NameOfActivity,Places,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
+        public ActionResult Edit([Bind(Include = "ActivityID,Places,NameOfActivity,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {

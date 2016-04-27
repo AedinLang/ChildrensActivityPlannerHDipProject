@@ -63,17 +63,43 @@ namespace NewKidsActivityProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "KidID,FirstName,LastName,Address,DOB,MedicalIssues,MedicalIntervention,GuardianFirstName,GuardianLastName,GuardianContactNumber,ContactEmail")] Kid kid)
+        public ActionResult Create([Bind(Include = "KidID,FirstName,LastName,Address,DOB,MedicalIssues,MedicalIntervention,GuardianFirstName,GuardianLastName,GuardianContactNumber,ContactEmail")] Kid child)
         {
-            if (ModelState.IsValid)
+            //Check for kid already in database
+
+            if (db.Kids.Any(k => k.DOB == child.DOB && k.LastName == child.LastName && k.FirstName == child.FirstName))
             {
-                db.Kids.Add(kid);
+                return RedirectToAction("ConfirmNonDuplicate");     //redirect to confirmation page
+            }
+            else if (ModelState.IsValid)
+            {
+                db.Kids.Add(child);
                 db.SaveChanges();
-                return RedirectToAction("KidDetails", new {id=kid.KidID});
+                return RedirectToAction("KidDetails", new { id = child.KidID });
             }
 
-            return View(kid);
+            return View(child);
         }
+
+        //  GET : for non duplicate confirmation
+        public ActionResult ConfirmNonDuplicate()
+        {
+            return View();
+        }
+
+        // POST: for non duplicate confirmation
+        /*[HttpPost]
+        public ActionResult ConfirmNonDuplicate(string dup)
+        {
+            if (dup"True"=)
+            {
+                return View("AllKids");
+            }
+            else
+            {
+                return View("Create");
+            }
+        }*/
 
         //  Get: Kid/Edit - to edit a kid from the drop down menu
         public ActionResult EditChild()

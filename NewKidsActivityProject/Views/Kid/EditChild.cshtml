@@ -1,17 +1,15 @@
 ﻿@model IEnumerable<NewKidsActivityProject.Models.Kid>
 
 @{
-    ViewBag.Title = "AllKids";
+    ViewBag.Title = "EditChild";
 }
+
+<h3><u>Select child to be edited</u></h3>
 <h1> </h1>
-<h3><u>List of all the children registered to do activities</u></h3>
-<h1> </h1>
-<h4>Select a child to review their details</h4>
-<h1></h1>
 <table class="table-bordered">
     <tr>
         <th>
-            Child's Name
+            @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DOB)
@@ -24,7 +22,7 @@
         <tr>
 
             <td>
-                @Html.ActionLink(item.FirstName + item.LastName, "KidDetails", new { id = item.KidID })       <!--combine first and second name for link-->
+                @Html.ActionLink(item.FirstName + item.LastName, "Edit", new { id = item.KidID })       <!--combine first and second name for link-->
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DOB)
@@ -34,12 +32,3 @@
 
 
 </table>
-
-<p>  </p>
-<p>  </p>
-<p>  </p>
-<p>  </p>
-
-<p>
-    @Html.ActionLink("Add New Child", "Create")
-</p>

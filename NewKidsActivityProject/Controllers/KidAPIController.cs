@@ -15,6 +15,12 @@ namespace NewKidsActivityProject.Controllers
     public class KidAPIController : ApiController
     {
         private ActivityContext db = new ActivityContext();
+        public KidAPIController()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+        }
+
+        
         [Route("all")]
         // GET: api/KidAPI
         public IHttpActionResult GetAllKids()
@@ -36,22 +42,24 @@ namespace NewKidsActivityProject.Controllers
             return Ok(kid);
         }
 
-
+        /*
         // GET: kids/lastname/{lastname}
         [Route("lastname/{LastName}")]
         [ResponseType(typeof(Kid))]
         public async Task<IHttpActionResult> GetKidByName(String lastName)
         {
-            var kid = await db.Kids.FindAsync(lastName);
+            var kid = db.Kids.Where(k => k.LastName.Contains(lastName)).Select(k => k);
             if (kid == null)
             {
                 return NotFound();
             }
 
             return Ok(kid);
-        }
+        }*/
 
-        /*public async Task<IHttpActionResult> GetKidsByName(String lastname)
+        [Route("lastname/{LastName}")]
+        [ResponseType(typeof(Kid))]
+        public async Task<IHttpActionResult> GetKidsByName(String lastname)
         {
             Kid kiddo = await db.Kids.FirstOrDefaultAsync(k => k.LastName.ToUpper() == lastname.ToUpper());
             if (kiddo == null)
@@ -60,8 +68,7 @@ namespace NewKidsActivityProject.Controllers
             }
             return Ok(kiddo);
 
-        }*/
-
+        }
 
         // PUT: api/KidAPI/5
         [ResponseType(typeof(void))]

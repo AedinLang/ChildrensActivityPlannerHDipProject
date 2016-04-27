@@ -12,6 +12,10 @@ namespace NewKidsActivityProject.Controllers
     public class ActivityAPIController : ApiController
     {
         private ActivityContext db = new ActivityContext();
+        public ActivityAPIController()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+        }
 
         [Route("all")]
         // GET: api/ActivityAPI
@@ -33,17 +37,29 @@ namespace NewKidsActivityProject.Controllers
             return Ok(activity);
         }
 
-        [Route("activityName/{NameOfActivity}")]
+       /* [Route("activityName/{NameOfActivity}")]
         [ResponseType(typeof(Activity))]
-        public async Task<IHttpActionResult> GetActivityByName(String nameOfActivity)
+        public Task<IHttpActionResult> GetActivityByName(String nameOfActivity)
         {
-            var activityName = await db.Activities.FindAsync(nameOfActivity);
+            Activity activityName =   db.Activities.FirstOrDefault(a => a.NameOfActivity.ToUpper() == nameOfActivity.ToUpper());
             if (activityName == null)
             {
                 return NotFound();
             }
             return Ok(activityName);
-        }
+        }*/
+
+
+       /* [Route("name/{name}")]      //name and then that will add the name in the column, GET all/name/donal
+        public IHttpActionResult GetName(string name)
+        {
+            PhoneBookEntry nameEntry = data.FirstOrDefault(n => n.Name.ToUpper() == name.ToUpper());
+            if (nameEntry == null)
+            {
+                return NotFound();
+            }
+            return Ok(nameEntry);
+        }*/
 
         protected override void Dispose(bool disposing)
         {

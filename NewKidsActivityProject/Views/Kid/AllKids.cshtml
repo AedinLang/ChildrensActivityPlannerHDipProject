@@ -11,8 +11,7 @@
 <table class="table-bordered">
     <tr>
         <th>
-            <!---@Html.DisplayNameFor(model => model.FirstName)--->
-            Name Of Child
+            @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DOB)
@@ -25,10 +24,10 @@
         <tr>
 
             <td>
-                @Html.ActionLink(item.FirstName+item.LastName, "KidDetails", new { id = item.KidID })       <!--combine first and second name for link-->
+                @Html.ActionLink(item.FirstName + item.LastName, "KidDetails", new { id = item.KidID })       <!--combine first and second name for link-->
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DOBInFormatWanted)
+                @Html.DisplayFor(modelItem => item.DOB)
             </td>
         </tr>
     }

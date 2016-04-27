@@ -40,6 +40,7 @@ namespace NewKidsActivityProject.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(activity);
         }
 

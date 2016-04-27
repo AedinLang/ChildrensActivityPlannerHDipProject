@@ -76,8 +76,9 @@ namespace NewKidsActivityProject.Models
         public string InstructorEmail { get; set; }
 
         [Required(ErrorMessage ="Brief description required")]
-        [StringLength(150)]
+        [StringLength(100)]
         [Display(Name="Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
 

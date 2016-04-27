@@ -11,12 +11,12 @@ namespace NewKidsActivityProject.Models
 
         [Required(ErrorMessage = "Enter child's first name")]
         [StringLength(20)]
-        [Display (Name ="Child")]
+        [Display (Name ="Child First Name")]
         public string FirstName { get; set; }
 
         [Required (ErrorMessage = "Enter child's second name")]
         [StringLength(20)]
-        [Display (Name =" ")]       //To get desired format for kidDetails view
+        [Display (Name ="Child Second Name ")]       //To get desired format for kidDetails view
         public string LastName { get; set; }
 
         //Property to combine FirstName,LasName and DOB to identify unique child for Create Enrollment in EnrollmentController 
@@ -58,12 +58,12 @@ namespace NewKidsActivityProject.Models
 
         [Required(ErrorMessage = "Enter guardian's first name")]
         [StringLength(20)]
-        [Display(Name = "Guardian")]
+        [Display(Name = "Guardian First Name")]
         public string GuardianFirstName { get; set; }
 
         [Required(ErrorMessage = "Enter guardian's second name")]
         [StringLength(20)]
-        [Display(Name =" ")]
+        [Display(Name ="Guardian Second Name")]
         public string GuardianLastName { get; set; }
  
         [Required(ErrorMessage ="Enter a valid phone number")]
@@ -74,6 +74,9 @@ namespace NewKidsActivityProject.Models
         [EmailAddress]
         [Display(Name ="E-mail")]
         public string ContactEmail { get; set; }
+
+        //Property for confirmation child not a duplicate
+        public bool Duplicate { get; set; }
 
         //Navigation properties
         //One child can have many enrollments - use ICollection

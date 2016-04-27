@@ -11,9 +11,9 @@ namespace NewKidsActivityProject.Controllers
     {
         private ActivityContext db = new ActivityContext();
 
-        public ActionResult AllKids()        //First name, last name and DOB only, order by LastName
+        public ActionResult AllKids()        //First name, last name and DOB only, order by FirstName then second name
         {
-            return View(db.Kids.ToList().OrderBy(k=>k.LastName));
+            return View(db.Kids.ToList().OrderBy(k=>k.FirstName).OrderBy(k=>k.LastName));
         }
 
         public ActionResult KidDetails(int? id)     //All details for kid's name selected including list of activities enrolled in
@@ -30,28 +30,7 @@ namespace NewKidsActivityProject.Controllers
             return View(kid);
         }
 
-        // GET: Kid  - different view to AllKids
-        public ActionResult Index()
-        {
-            return View(db.Kids.ToList());
-        }
-
-        // GET: Kid/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Kid kid = db.Kids.Find(id);
-            if (kid == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kid);
-        }
-
-        
+              
         // GET: Kid/Create
         public ActionResult Create()
         {
@@ -63,17 +42,43 @@ namespace NewKidsActivityProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "KidID,FirstName,LastName,Address,DOB,MedicalIssues,MedicalIntervention,GuardianFirstName,GuardianLastName,GuardianContactNumber,ContactEmail")] Kid kid)
+        public ActionResult Create([Bind(Include = "KidID,FirstName,LastName,Address,DOB,MedicalIssues,MedicalIntervention,GuardianFirstName,GuardianLastName,GuardianContactNumber,ContactEmail")] Kid child)
         {
-            if (ModelState.IsValid)
+            //Check for kid already in database
+
+            if (db.Kids.Any(k => k.DOB == child.DOB && k.LastName == child.LastName && k.FirstName == child.FirstName))
             {
-                db.Kids.Add(kid);
+                return RedirectToAction("ConfirmNonDuplicate");     //redirect to confirmation page
+            }
+            else if (ModelState.IsValid)
+            {
+                db.Kids.Add(child);
                 db.SaveChanges();
-                return RedirectToAction("KidDetails", new {id=kid.KidID});
+                return RedirectToAction("KidDetails", new { id = child.KidID });
             }
 
-            return View(kid);
+            return View(child);
         }
+
+        //  GET : for non duplicate confirmation
+        public ActionResult ConfirmNonDuplicate()
+        {
+            return View();
+        }
+
+        // POST: for non duplicate confirmation
+        /*[HttpPost]
+        public ActionResult ConfirmNonDuplicate(string dup)
+        {
+            if (dup"True"=)
+            {
+                return View("AllKids");
+            }
+            else
+            {
+                return View("Create");
+            }
+        }*/
 
         //  Get: Kid/Edit - to edit a kid from the drop down menu
         public ActionResult EditChild()

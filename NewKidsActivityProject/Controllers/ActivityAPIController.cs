@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -37,29 +38,42 @@ namespace NewKidsActivityProject.Controllers
             return Ok(activity);
         }
 
-       /* [Route("activityName/{NameOfActivity}")]
+        [Route("activityName/{NameOfActivity}")]
         [ResponseType(typeof(Activity))]
-        public Task<IHttpActionResult> GetActivityByName(String nameOfActivity)
+        public async Task<IHttpActionResult> GetActivityByName(String nameOfActivity)
         {
-            Activity activityName =   db.Activities.FirstOrDefault(a => a.NameOfActivity.ToUpper() == nameOfActivity.ToUpper());
+            Activity activityName =  await db.Activities.FirstOrDefaultAsync(a => a.NameOfActivity.ToUpper() == nameOfActivity.ToUpper());
             if (activityName == null)
             {
                 return NotFound();
             }
             return Ok(activityName);
-        }*/
+        }
+
+        //[Route("lastname/{LastName}")]
+        //[ResponseType(typeof(Kid))]
+        //public async Task<IHttpActionResult> GetKidsByName(String lastname)
+        //{
+        //    Kid kiddo = await db.Kids.FirstOrDefaultAsync(k => k.LastName.ToUpper() == lastname.ToUpper());
+        //    if (kiddo == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(kiddo);
+
+        //}
 
 
-       /* [Route("name/{name}")]      //name and then that will add the name in the column, GET all/name/donal
-        public IHttpActionResult GetName(string name)
-        {
-            PhoneBookEntry nameEntry = data.FirstOrDefault(n => n.Name.ToUpper() == name.ToUpper());
-            if (nameEntry == null)
-            {
-                return NotFound();
-            }
-            return Ok(nameEntry);
-        }*/
+        /* [Route("name/{name}")]      //name and then that will add the name in the column, GET all/name/donal
+         public IHttpActionResult GetName(string name)
+         {
+             PhoneBookEntry nameEntry = data.FirstOrDefault(n => n.Name.ToUpper() == name.ToUpper());
+             if (nameEntry == null)
+             {
+                 return NotFound();
+             }
+             return Ok(nameEntry);
+         }*/
 
         protected override void Dispose(bool disposing)
         {

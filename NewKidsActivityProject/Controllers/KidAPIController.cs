@@ -42,21 +42,7 @@ namespace NewKidsActivityProject.Controllers
             return Ok(kid);
         }
 
-        /*
-        // GET: kids/lastname/{lastname}
-        [Route("lastname/{LastName}")]
-        [ResponseType(typeof(Kid))]
-        public async Task<IHttpActionResult> GetKidByName(String lastName)
-        {
-            var kid = db.Kids.Where(k => k.LastName.Contains(lastName)).Select(k => k);
-            if (kid == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(kid);
-        }*/
-
+        
         [Route("lastname/{LastName}")]
         [ResponseType(typeof(Kid))]
         public async Task<IHttpActionResult> GetKidsByName(String lastname)
@@ -68,56 +54,6 @@ namespace NewKidsActivityProject.Controllers
             }
             return Ok(kiddo);
 
-        }
-
-        // PUT: api/KidAPI/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutKid(int id, Kid kid)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != kid.KidID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(kid).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!KidExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/KidAPI
-        [ResponseType(typeof(Kid))]
-        public async Task<IHttpActionResult> PostKid(Kid kid)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Kids.Add(kid);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = kid.KidID }, kid);
         }
 
         protected override void Dispose(bool disposing)

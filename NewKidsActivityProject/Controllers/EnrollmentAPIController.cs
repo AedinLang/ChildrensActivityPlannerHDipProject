@@ -49,23 +49,29 @@ namespace NewKidsActivityProject.Controllers
             
         //}
         //GET: enrolments/allActivities     ///need to work on linq query,  array of string,   serialize issues
-        [Route("allActivities")]
+        [Route("allActivities/fullname/{FirstName}/{LastName}")]
         [HttpGet]
-        public IHttpActionResult AllActivitiesForChild()
+        public IHttpActionResult AllActivitiesForChild(string firstname, string lastname)
         {
             var activitiesPerChild = (from k in db.Kids
                                       join e in db.Enrollments on k.KidID equals e.KidID
                                       join a in db.Activities on e.ActivityID equals a.ActivityID
-                                      where a.NameOfActivity != null
-                                      //select new { e.EnrollmentID, e.PaymentDue }).ToList();
-                                      select  (a.NameOfActivity.Count()) );
-
+                                      where  k.FirstName == firstname && k.LastName == lastname 
+                                      select  a.NameOfActivity).ToList();
+                                      //select  (a.NameOfActivity) );
+            
             if (activitiesPerChild == null)
             {
                 return NotFound();
             }
+            else
+            {
+                
+                    return Ok(activitiesPerChild.ToList());
 
-            return Ok(activitiesPerChild.ToList());
+            }
+
+            // return Ok(activitiesPerChild.ToList());
         }
 
         protected override void Dispose(bool disposing)

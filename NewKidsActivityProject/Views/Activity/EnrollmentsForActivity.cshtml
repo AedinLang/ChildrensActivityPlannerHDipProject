@@ -1,0 +1,64 @@
+﻿@model NewKidsActivityProject.Models.Activity
+
+@{
+    ViewBag.Title = "EnrollmentsForActivity";
+}
+
+<h2>EnrollmentsForActivity</h2>
+
+<div>
+    <h4>Activity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DayOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enrollments)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Enrollments</th>
+                </tr>
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kid.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentDue)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ActivityID }) |
+    @Html.ActionLink("Back to List", "Enrollments")
+</p>

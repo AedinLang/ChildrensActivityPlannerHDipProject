@@ -2,8 +2,6 @@
 
 namespace NewKidsActivityProject.Models
 {
-    /*//enum for subscription due yes/no ?
-    public enum SubDue { yes, no }*/
     public class Enrollment
     {
         //auto properties

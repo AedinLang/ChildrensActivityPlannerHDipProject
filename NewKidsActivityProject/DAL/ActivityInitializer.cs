@@ -47,8 +47,8 @@ namespace NewKidsActivityProject.DAL
                 new Enrollment { KidID=4, ActivityID=6, PaymentDue=false }
             };
 
-            /*enrollments.ForEach(e => context.Enrollments.Add(e));
-            context.SaveChanges();*/
+            enrollments.ForEach(e => context.Enrollments.Add(e));
+            context.SaveChanges();
         }
 
 

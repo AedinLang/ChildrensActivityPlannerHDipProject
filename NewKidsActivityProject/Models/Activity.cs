@@ -8,13 +8,12 @@ namespace NewKidsActivityProject.Models
     //enum for day of week
     public enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
 
-    //enum for type of activity so get dropdown list???? Is there another way of getting a drop down so can add new activities????
     public class Activity
     {
         //auto properties
 
         //Primary key
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ActivityID { get; set; }
 
         [Required(ErrorMessage ="An Activity Name required")]

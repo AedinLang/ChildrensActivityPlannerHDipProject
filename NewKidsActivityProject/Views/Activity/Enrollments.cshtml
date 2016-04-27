@@ -5,12 +5,19 @@
 }
 
 
-<h2>Activity List</h2>
+<h3><u>Select Activity to see Enrollment Details</u></h3>
+<h1></h1>
 
-<table class="table">
+<table class="table-bordered">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NameOfActivity)
+            Activity
+        </th>
+        <th>
+            Day
+        </th>
+        <th>
+            Time
         </th>
 
     </tr>
@@ -21,6 +28,12 @@
 
             <td>
                 @Html.ActionLink(item.NameOfActivity, "EnrollmentsForActivity", new { id = item.ActivityID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayOfActivity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfActivityValue)
             </td>
         </tr>
     }

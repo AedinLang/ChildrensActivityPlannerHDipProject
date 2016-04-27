@@ -29,8 +29,9 @@ namespace NewKidsActivityProject.Models
         }
 
         [Required(ErrorMessage = "Enter a valid address")]
-        [StringLength(50)]
+        [StringLength(100)]
         [Display(Name ="Address")]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
         [Required(ErrorMessage ="DOB value must be entered")]

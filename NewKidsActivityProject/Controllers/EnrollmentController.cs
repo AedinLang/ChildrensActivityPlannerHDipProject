@@ -18,7 +18,7 @@ namespace NewKidsActivityProject.Controllers
         // GET: Enrollment
         public ActionResult Index()
         {
-            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid);          //Tying Activity & Kid entity to Enrollments db
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid).OrderBy(e=>e.Kid.LastName);       //Alphabetically sort by Kid lastname
             return View(enrollments.ToList());
         }
 
@@ -45,6 +45,7 @@ namespace NewKidsActivityProject.Controllers
             return View();
         }
 
+        
         // POST: Enrollment/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -64,10 +65,10 @@ namespace NewKidsActivityProject.Controllers
             return View(enrollment);
         }
 
-        // GET: Enrollment
+        // GET: EditEnrollment - dropdown on Homescreen
         public ActionResult EditEnrollment()
         {
-            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid);          //Tying Activity & Kid entity to Enrollments db
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid).OrderBy(e=>e.Activity.NameOfActivity);     //Activities listed in alphabetical order
             return View(enrollments.ToList());
         }
 
@@ -84,11 +85,11 @@ namespace NewKidsActivityProject.Controllers
                 return HttpNotFound();
             }
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FirstName", enrollment.KidID);
+            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
             return View(enrollment);
         }
 
-        // POST: Enrollment/Edit/5
+        /*// POST: Enrollment/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -102,8 +103,45 @@ namespace NewKidsActivityProject.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FirstName", enrollment.KidID);
+            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
             return View(enrollment);
+        }*/
+
+        // POST: Enrollment/Edit
+        //This code allows update of the PaymentDue field only. This is the only field in an enrollment that should be edited.
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPost(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var enrollmentToUpdate = db.Enrollments.Find(id);
+            if (TryUpdateModel(enrollmentToUpdate, "",
+               new string[] { "KidID", "ActivityID", "PaymentDue" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(enrollmentToUpdate);
+        }
+
+        // GET: DeleteEnrollment - dropdown on Homescreen
+        public ActionResult DeleteEnrollment()
+        {
+            var enrollments = db.Enrollments.Include(e => e.Activity).Include(e => e.Kid).OrderBy(e => e.Activity.NameOfActivity);     //Activities listed in alphabetical order
+            return View(enrollments.ToList());
         }
 
         // GET: Enrollment/Delete/5
@@ -129,7 +167,7 @@ namespace NewKidsActivityProject.Controllers
             Enrollment enrollment = db.Enrollments.Find(id);
             db.Enrollments.Remove(enrollment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");      
         }
 
         protected override void Dispose(bool disposing)

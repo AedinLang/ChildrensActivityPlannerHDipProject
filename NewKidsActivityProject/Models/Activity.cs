@@ -22,6 +22,10 @@ namespace NewKidsActivityProject.Models
         [Display(Name ="Activity Name")]
         public string NameOfActivity { get; set; }
 
+        [Required(ErrorMessage = "Indicate number of places in the class")]
+        [Display(Name="Places in class")]
+        public int Places { get; set; }
+
         [Required]
         [Display(Name ="Day of week")]
         public Day DayOfActivity { get; set; }
@@ -33,7 +37,8 @@ namespace NewKidsActivityProject.Models
         public DateTime? TimeOfActivity { get; set; }
         [Required(ErrorMessage = "A time ia required")]
         [Display (Name ="Time")]
-        [RegularExpression(@"^(0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$", ErrorMessage = "Invalid time")]
+        //[RegularExpression(@"^(0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$", ErrorMessage = "Invalid time")]
+        [DataType(DataType.Time)]
         public string TimeOfActivityValue
         {
             get

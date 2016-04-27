@@ -11,9 +11,9 @@ namespace NewKidsActivityProject.Controllers
     {
         private ActivityContext db = new ActivityContext();
 
-        public ActionResult AllKids()        //First name, last name and DOB only
+        public ActionResult AllKids()        //First name, last name and DOB only, order by LastName
         {
-            return View(db.Kids.ToList());
+            return View(db.Kids.ToList().OrderBy(k=>k.LastName));
         }
 
         public ActionResult KidDetails(int? id)     //All details for kid's name selected including list of activities enrolled in
@@ -69,7 +69,7 @@ namespace NewKidsActivityProject.Controllers
             {
                 db.Kids.Add(kid);
                 db.SaveChanges();
-                return RedirectToAction("AllKids");
+                return RedirectToAction("KidDetails", new {id=kid.KidID});
             }
 
             return View(kid);
@@ -78,7 +78,7 @@ namespace NewKidsActivityProject.Controllers
         //  Get: Kid/Edit - to edit a kid from the drop down menu
         public ActionResult EditChild()
         {
-            return View(db.Kids.ToList());
+            return View(db.Kids.ToList().OrderBy(k=>k.LastName));
         }
 
 
@@ -108,7 +108,7 @@ namespace NewKidsActivityProject.Controllers
             {
                 db.Entry(kid).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("AllKids");
+                return RedirectToAction("KidDetails", new { id = kid.KidID });
             }
             return View(kid);
         }

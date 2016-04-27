@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<NewKidsActivityProject.Models.Enrollment>
 
 @{
-    ViewBag.Title = "EditEnrollment";
+    ViewBag.Title = "DeleteEnrollment";
 }
 
 <h3><u>Select enrollment to edit</u></h3>
@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Activity.NameOfActivity)
             </td>
             <td>
-                @Html.ActionLink(item.Kid.FirstName + item.Kid.LastName, "Edit", new { id = item.EnrollmentID })                
+                @Html.ActionLink(item.Kid.FirstName + item.Kid.LastName, "Delete", new { id = item.EnrollmentID })
             <td>
                 @Html.DisplayFor(modelItem => item.Kid.DOB)
             </td>

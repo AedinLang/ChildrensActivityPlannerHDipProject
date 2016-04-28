@@ -44,12 +44,8 @@ namespace NewKidsActivityProject.Controllers
 
             return Ok(enrollment);
         }
-        //public class activitiesPerChild
-        //{
-        //    public string NameOfActivity{get;set;}
-            
-        //}
-        //GET: enrolments/allActivities     ///need to work on linq query,  array of string,   serialize issues
+        
+        //get activitiesPerChild
         [Route("allActivities/fullname/{FirstName}/{LastName}")]
         [HttpGet]
         public IHttpActionResult AllActivitiesForChild(string firstname, string lastname)

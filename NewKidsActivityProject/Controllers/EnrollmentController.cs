@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using NewKidsActivityProject.DAL;
 using NewKidsActivityProject.Models;
@@ -160,7 +157,7 @@ namespace NewKidsActivityProject.Controllers
             Enrollment enrollment = db.Enrollments.Find(id);
             db.Enrollments.Remove(enrollment);
             db.SaveChanges();
-            return RedirectToAction("EnrollmentsForActivity");      
+            return RedirectToAction("EnrollmentsForActivity", "Activity", new { id = enrollment.ActivityID });      
         }
 
         protected override void Dispose(bool disposing)

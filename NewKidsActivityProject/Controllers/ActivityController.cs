@@ -24,7 +24,8 @@ namespace NewKidsActivityProject.Controllers
         // GET: Activity Names - activity name only, use in dropdown list for Activity
         public ActionResult Enrollments()           //SAME CODE AS ABOVE MUST BE SOMEWAY OF CHOOSING WHICH "SECOND" VIEW TO GO TO BASED ON CONDITIONS
         {
-            return View(db.Activities.ToList());
+
+            return View(db.Activities.OrderBy(a=>a.NameOfActivity).ToList());
         }
 
         // GET: Enrollment details - use when select Activity Enrollment from Enrollments dropdown
@@ -36,6 +37,12 @@ namespace NewKidsActivityProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Activity activity = db.Activities.Find(id);
+
+            var count = db.Enrollments.Count(a => a.ActivityID == id);
+
+            ViewBag.NumberOfEnrollments = count;
+            ViewBag.PlacesLeft = activity.Places - count;
+
             if (activity == null)
             {
                 return HttpNotFound();
@@ -52,7 +59,14 @@ namespace NewKidsActivityProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Activity activity = db.Activities.Find(id);
+
+            var count = db.Enrollments.Count(a => a.ActivityID == id);
+
+            ViewBag.NumberOfEnrollments = count;
+            ViewBag.PlacesLeft = activity.Places - count;
+
             if (activity == null)
             {
                 return HttpNotFound();
@@ -60,27 +74,6 @@ namespace NewKidsActivityProject.Controllers
             return View(activity);
         }
 
-        // GET: Activity
-        public ActionResult Index()
-        {
-            return View(db.Activities.ToList());
-        }
-
-        // GET: Activity/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Activity activity = db.Activities.Find(id);
-            if (activity == null)
-            {
-                return HttpNotFound();
-            }
-            return View(activity);
-        }
-        
         // GET: Activity/Create
         public ActionResult Create()
         {
@@ -88,13 +81,16 @@ namespace NewKidsActivityProject.Controllers
         }
 
         // POST: Activity/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ActivityID,Places,NameOfActivity,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
         {
-            if (ModelState.IsValid)
+            if (db.Activities.Any(a => a.NameOfActivity == activity.NameOfActivity && a.TimeOfActivityValue == activity.TimeOfActivityValue && a.DayOfActivity == activity.DayOfActivity && a.TimeOfActivityValue == activity.TimeOfActivityValue && a.InstructorFirstName == activity.InstructorFirstName && a.InstructorLastName == activity.InstructorLastName))
+            {
+                return RedirectToAction("Duplicate");
+            }
+            else if (ModelState.IsValid)
             {
                 db.Activities.Add(activity);
                 db.SaveChanges();
@@ -104,10 +100,16 @@ namespace NewKidsActivityProject.Controllers
             return View(activity);
         }
 
+        //  GET : duplicate message
+        public ActionResult Duplicate()
+        {
+            return View();
+        }
+
         //  Get: Activity/Edit - to edit an activity from the drop down menu
         public ActionResult EditActivity()
         {
-            return View(db.Activities.ToList());
+            return View(db.Activities.OrderBy(a => a.NameOfActivity));
         }
 
         // GET: Activity/Edit/5
@@ -144,7 +146,7 @@ namespace NewKidsActivityProject.Controllers
         //  Get: Activity/Remove - to remove an activity from the drop down menu
         public ActionResult RemoveActivity()
         {
-            return View(db.Activities.ToList());
+            return View(db.Activities.OrderBy(a => a.NameOfActivity).ToList());
         }
 
 

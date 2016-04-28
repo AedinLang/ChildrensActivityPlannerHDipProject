@@ -53,16 +53,26 @@ namespace NewKidsActivityProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EnrollmentID,KidID,ActivityID,PaymentDue")] Enrollment enrollment)
         {
+            if (db.Enrollments.Any(e => e.KidID == enrollment.KidID && e.ActivityID == enrollment.ActivityID))
+            {
+                return RedirectToAction("Duplicate");
+            }
             if (ModelState.IsValid)
             {
                 db.Enrollments.Add(enrollment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ActivityDetails", "Activity", new { id = enrollment.ActivityID });
             }
-
+            
             ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
             ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
             return View(enrollment);
+        }
+
+        //  GET : duplicate message
+        public ActionResult Duplicate()
+        {
+            return View();
         }
 
         // GET: EditEnrollment - dropdown on Homescreen
@@ -89,24 +99,7 @@ namespace NewKidsActivityProject.Controllers
             return View(enrollment);
         }
 
-        /*// POST: Enrollment/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EnrollmentID,KidID,ActivityID,PaymentDue")] Enrollment enrollment)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(enrollment).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
-            return View(enrollment);
-        }*/
-
+        
         // POST: Enrollment/Edit
         //This code allows update of the PaymentDue field only. This is the only field in an enrollment that should be edited.
 
@@ -126,7 +119,7 @@ namespace NewKidsActivityProject.Controllers
                 {
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("EnrollmentsForActivity", "Activity", new { id = enrollmentToUpdate.ActivityID });
                 }
                 catch (DataException /* dex */)
                 {
@@ -167,7 +160,7 @@ namespace NewKidsActivityProject.Controllers
             Enrollment enrollment = db.Enrollments.Find(id);
             db.Enrollments.Remove(enrollment);
             db.SaveChanges();
-            return RedirectToAction("Index");      
+            return RedirectToAction("EnrollmentsForActivity");      
         }
 
         protected override void Dispose(bool disposing)

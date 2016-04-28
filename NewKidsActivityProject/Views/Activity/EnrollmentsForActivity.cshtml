@@ -4,20 +4,12 @@
     ViewBag.Title = "EnrollmentsForActivity";
 }
 
-<h2>EnrollmentsForActivity</h2>
+<h3><u>Enrollment details for</u> : @Model.NameOfActivity</h3>
 
 <div>
-    <h4>Activity</h4>
-    <hr />
+     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NameOfActivity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NameOfActivity)
-        </dd>
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.DayOfActivity)
         </dt>
@@ -45,24 +37,26 @@
                         Paid
                     </th>
                 </tr>
-                @foreach (var
-                    item in Model.Enrollments)
+                @foreach (var item in Model.Enrollments)
                 {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Kid.FirstName)
+                            @Html.DisplayFor(modelItem => item.Kid.LastName)
                         </td>
                         <td style="text-align:center">                          <!--centre alignement of text box-->
                             @Html.DisplayFor(modelItem => item.PaymentDue)
                         </td>
                     </tr>
-                }
+                 }
             </table>
         </dd>
 
     </dl>
 </div>
+<p> Total enrollments:  @ViewBag.NumberOfEnrollments <br/> Places available:  @ViewBag.PlacesLeft</p>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ActivityID }) |
-    @Html.ActionLink("Back to List", "Enrollments")
+     @Html.ActionLink("Back to List", "Enrollments") |
+     @Html.ActionLink("Enroll in activity", "Create", "Enrollment")
 </p>

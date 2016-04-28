@@ -10,14 +10,30 @@
 <h1> </h1>
 
 
-<table class="table">
-
+<table class="table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.NameOfActivity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.DayOfActivity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.TimeOfActivityValue)
+        </th>
+    </tr>
     @foreach (var item in Model)
     {
         <tr>
 
             <td>
                 @Html.ActionLink(item.NameOfActivity, "Edit", new { id = item.ActivityID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayOfActivity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfActivityValue)
             </td>
         </tr>
     }

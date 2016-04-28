@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using NewKidsActivityProject.DAL;
 using NewKidsActivityProject.Models;
+using System;
 
 namespace NewKidsActivityProject.Controllers
 {
@@ -30,28 +31,6 @@ namespace NewKidsActivityProject.Controllers
             return View(kid);
         }
 
-        // GET: Kid  - different view to AllKids
-        public ActionResult Index()
-        {
-            return View(db.Kids.ToList());
-        }
-
-        // GET: Kid/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Kid kid = db.Kids.Find(id);
-            if (kid == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kid);
-        }
-
-        
         // GET: Kid/Create
         public ActionResult Create()
         {
@@ -67,9 +46,9 @@ namespace NewKidsActivityProject.Controllers
         {
             //Check for kid already in database
 
-            if (db.Kids.Any(k => k.DOB == child.DOB && k.LastName == child.LastName && k.FirstName == child.FirstName))
+            if (db.Kids.Any(k => k.DOB == child.DOB && k.LastName == child.LastName && k.FirstName == child.FirstName && k.Address==child.Address && k.GuardianFirstName==child.GuardianFirstName&&k.GuardianLastName==child.GuardianLastName))
             {
-                return RedirectToAction("ConfirmNonDuplicate");     //redirect to confirmation page
+                return RedirectToAction("Duplicate");    
             }
             else if (ModelState.IsValid)
             {
@@ -81,25 +60,13 @@ namespace NewKidsActivityProject.Controllers
             return View(child);
         }
 
-        //  GET : for non duplicate confirmation
-        public ActionResult ConfirmNonDuplicate()
+        //  GET : duplicate message
+        public ActionResult Duplicate()
         {
             return View();
         }
 
-        // POST: for non duplicate confirmation
-        /*[HttpPost]
-        public ActionResult ConfirmNonDuplicate(string dup)
-        {
-            if (dup"True"=)
-            {
-                return View("AllKids");
-            }
-            else
-            {
-                return View("Create");
-            }
-        }*/
+        
 
         //  Get: Kid/Edit - to edit a kid from the drop down menu
         public ActionResult EditChild()

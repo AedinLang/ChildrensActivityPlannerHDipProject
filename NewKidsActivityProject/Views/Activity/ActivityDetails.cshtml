@@ -83,11 +83,42 @@
         </dd>
 
     </dl>
+    <dl>
+        Enrollments for this Activity
+        <dd>
+            <table class="table-bordered">
+                <tr>
+                    <th>
+                        Child
+                    </th>
+                    <th>
+                        Paid
+                    </th>
+                </tr>
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kid.FirstName)
+                            @Html.DisplayFor(modelItem => item.Kid.LastName)
+                        </td>
+                        <td style="text-align:center">
+                            <!--centre alignement of text box-->
+                            @Html.DisplayFor(modelItem => item.PaymentDue)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
 </div>
+
+<p> Total enrollments:  @ViewBag.NumberOfEnrollments <br /> Places available:  @ViewBag.PlacesLeft</p>
+
 <p>
     @Html.ActionLink("Back to List", "AllActivities") | 
     @Html.ActionLink("Edit Activity", "Edit", new { id = Model.ActivityID }) | 
-    @Html.ActionLink("Remove Activity", "Delete", new { id = Model.ActivityID })
+    @Html.ActionLink("Remove Activity", "Delete", new { id = Model.ActivityID }) |
+    @Html.ActionLink("Enroll in activity", "Create", "Enrollment", new { id = Model.ActivityID }, null)
 
-    <!---*****WORK OUT HOW TO PUT A LINK IN HERE TO CREATE FOR ENROLLMENT. LOOK AT ENROLLMENT FIRST****-->
 </p>

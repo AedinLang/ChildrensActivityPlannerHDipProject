@@ -77,7 +77,7 @@ namespace NewKidsActivityProject.Models
         public string ContactEmail { get; set; }
 
         //Property for confirmation child not a duplicate
-        public bool Duplicate { get; set; }
+        public int? Duplicate { get; set; }
 
         //Navigation properties
         //One child can have many enrollments - use ICollection

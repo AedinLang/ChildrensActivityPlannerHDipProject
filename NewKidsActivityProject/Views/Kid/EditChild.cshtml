@@ -25,7 +25,7 @@
                 @Html.ActionLink(item.FirstName + item.LastName, "Edit", new { id = item.KidID })       <!--combine first and second name for link-->
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DOB)
+                @Html.DisplayFor(modelItem => item.DOBInFormatWanted)
             </td>
         </tr>
     }

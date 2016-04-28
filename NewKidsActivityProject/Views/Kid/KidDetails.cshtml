@@ -43,11 +43,18 @@
 
         <dt>
             @Html.DisplayNameFor(model => model.GuardianFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuardianFirstName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.GuardianLastName)
         </dt>
 
         <dd>
-            Guardian
+            @Html.DisplayFor(model => model.GuardianLastName)
         </dd>
 
         <dt>
@@ -67,17 +74,19 @@
         </dd>
         </dl>
     <dl>
+        Enrolled in:
         <dd>
             <table class="table-bordered">
-                <tr>
-                    <th>Enrolled In</th>
-                </tr>
                 @foreach (var item in Model.Enrollments)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Activity.NameOfActivity),
-                            @Html.DisplayFor(modelItem => item.Activity.DayOfActivity),
+                            @Html.DisplayFor(modelItem => item.Activity.NameOfActivity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activity.DayOfActivity)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Activity.TimeOfActivityValue)
                         </td>
                     </tr>

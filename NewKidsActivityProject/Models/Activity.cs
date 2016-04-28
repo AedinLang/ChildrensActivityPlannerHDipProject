@@ -29,14 +29,12 @@ namespace NewKidsActivityProject.Models
         [Display(Name ="Day of week")]
         public Day DayOfActivity { get; set; }
 
-        /*[Required]
-        [Display (Name="Time")]
-        //[DisplayFormat(DataFormatString = "{0:HH:mm}")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm tt}")]*/
+
+        [DataType(DataType.Time)]
         public DateTime? TimeOfActivity { get; set; }
+
         [Required(ErrorMessage = "A time ia required")]
         [Display (Name ="Time")]
-        //[RegularExpression(@"^(0[1-9]|1[0-2]):[0-5][0-9] (am|pm|AM|PM)$", ErrorMessage = "Invalid time")]
         [DataType(DataType.Time)]
         public string TimeOfActivityValue
         {
@@ -57,12 +55,12 @@ namespace NewKidsActivityProject.Models
 
         [Required(ErrorMessage ="Instructor first name required")]
         [StringLength(15)]
-        [Display(Name = "Instructor")]
+        [Display(Name = "Instructor First Name")]
         public string InstructorFirstName { get; set; }
 
         [Required(ErrorMessage ="Instructor second name required")]
         [StringLength(15)]
-        [Display(Name =" ")]
+        [Display(Name ="Instructor Last Name")]
         public string InstructorLastName { get; set; }
 
         [Required(ErrorMessage ="Contact number required")]

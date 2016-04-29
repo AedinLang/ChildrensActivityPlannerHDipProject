@@ -50,8 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InstructorFirstName)
-            @Html.DisplayNameFor(model => model.InstructorLastName)
+            Instructor Name
         </dt>
 
         <dd>
@@ -116,7 +115,7 @@
 <p> Total enrollments:  @ViewBag.NumberOfEnrollments <br /> Places available:  @ViewBag.PlacesLeft</p>
 
 <p>
-    @Html.ActionLink("Back to List", "AllActivities") | 
+    @Html.ActionLink("Go to Activity List", "AllActivities") | 
     @Html.ActionLink("Edit Activity", "Edit", new { id = Model.ActivityID }) | 
     @Html.ActionLink("Remove Activity", "Delete", new { id = Model.ActivityID }) |
     @Html.ActionLink("Enroll in activity", "Create", "Enrollment", new { id = Model.ActivityID }, null)

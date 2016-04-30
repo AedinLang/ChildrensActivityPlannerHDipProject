@@ -109,7 +109,6 @@ C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsAc
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\NewKidsActivityProject.Tests.dll.config
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\NewKidsActivityProject.Tests.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\NewKidsActivityProject.Tests.pdb
-C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\NewKidsActivityProject.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\Newtonsoft.Json.dll
@@ -127,7 +126,6 @@ C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsAc
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\System.Web.Http.WebHost.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\NewKidsActivityProject.pdb
-C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\System.Web.Helpers.xml
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\System.Web.Mvc.xml

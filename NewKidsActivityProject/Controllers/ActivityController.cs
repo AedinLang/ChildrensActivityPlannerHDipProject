@@ -86,17 +86,24 @@ namespace NewKidsActivityProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ActivityID,Places,NameOfActivity,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
         {
-            if (db.Activities.Any(a => a.NameOfActivity == activity.NameOfActivity && a.TimeOfActivityValue == activity.TimeOfActivityValue && a.DayOfActivity == activity.DayOfActivity && a.TimeOfActivityValue == activity.TimeOfActivityValue && a.InstructorFirstName == activity.InstructorFirstName && a.InstructorLastName == activity.InstructorLastName))
+            try
             {
-                return RedirectToAction("Duplicate");
+                if (db.Activities.Any(a => a.NameOfActivity == activity.NameOfActivity && a.TimeOfActivityValue == activity.TimeOfActivityValue && a.DayOfActivity == activity.DayOfActivity && a.TimeOfActivityValue == activity.TimeOfActivityValue && a.InstructorFirstName == activity.InstructorFirstName && a.InstructorLastName == activity.InstructorLastName))
+                {
+                    return RedirectToAction("Duplicate");
+                }
+                else if (ModelState.IsValid)
+                {
+                    db.Activities.Add(activity);
+                    db.SaveChanges();
+                    return RedirectToAction("ActivityDetails", new { id = activity.ActivityID });
+                }
             }
-            else if (ModelState.IsValid)
+            catch(DataException /*Dex*/)
             {
-                db.Activities.Add(activity);
-                db.SaveChanges();
-                return RedirectToAction("ActivityDetails", new { id = activity.ActivityID });
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
-
             return View(activity);
         }
 
@@ -134,11 +141,19 @@ namespace NewKidsActivityProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ActivityID,Places,NameOfActivity,DayOfActivity,TimeOfActivityValue,ActivityPrice,InstructorFirstName,InstructorLastName,InstructorContactNumber,InstructorEmail,Description")] Activity activity)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(activity).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("ActivityDetails", new { id = activity.ActivityID });
+                if (ModelState.IsValid)
+                {
+                    db.Entry(activity).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("ActivityDetails", new { id = activity.ActivityID });
+                }
+            }
+            catch(DataException /*Dex*/)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(activity);
         }
@@ -170,9 +185,17 @@ namespace NewKidsActivityProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Activity activity = db.Activities.Find(id);
-            db.Activities.Remove(activity);
-            db.SaveChanges();
+            try
+            {
+                Activity activity = db.Activities.Find(id);
+                db.Activities.Remove(activity);
+                db.SaveChanges();
+            }
+            catch(DataException /*Dex*/)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             return RedirectToAction("AllActivities");
         }
 

@@ -53,66 +53,28 @@ namespace NewKidsActivityProject.Controllers
             {
                 return RedirectToAction("Duplicate");
             }
-            if (ModelState.IsValid)
+            try
             {
-                db.Enrollments.Add(enrollment);
-                db.SaveChanges();
-                return RedirectToAction("ActivityDetails", "Activity", new { id = enrollment.ActivityID });
-            }
-            
-            ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
-            return View(enrollment);
-        }
-
-
-        /*/ GET: Enrollment/Edit - coming from ChldDetails
-        public ActionResult EnrollChild(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Enrollment enrollment = db.Enrollments.Find(id);
-            if (enrollment == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
-            ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
-            return View(enrollment);
-        }
-
-        // POST: Enrollment/Edit with KidID value passed in from ChildDetails
-        //This code allows update of the PaymentDue field only. This is the only field in an enrollment that should be edited.
-
-        [HttpPost ActionName("EnrollChild")]
-        [ValidateAntiForgeryToken]
-        public ActionResult EnrollChildPost(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var enrollmentToUpdate = db.Enrollments.Find(id);
-            if (TryUpdateModel(enrollmentToUpdate, "",
-               new string[] { "KidID", "ActivityID", "PaymentDue" }))
-            {
-                try
+                if (ModelState.IsValid)
                 {
+                    db.Enrollments.Add(enrollment);
                     db.SaveChanges();
+                    return RedirectToAction("ActivityDetails", "Activity", new { id = enrollment.ActivityID });
+                }
 
-                    return RedirectToAction("KidsDetails", "Kid", new { id = enrollmentToUpdate.KidID });
-                }
-                catch (DataException /* dex )
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
+                ViewBag.ActivityID = new SelectList(db.Activities, "ActivityID", "NameOfActivity", enrollment.ActivityID);
+                ViewBag.KidID = new SelectList(db.Kids, "KidID", "FullName", enrollment.KidID);
             }
-            return View(enrollmentToUpdate);
-        }*/
-        
+            catch(DataException /*Dex*/)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(enrollment);
+        }
+
+
+       
         //  GET : duplicate message
         public ActionResult Duplicate()
         {
@@ -201,10 +163,20 @@ namespace NewKidsActivityProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Enrollment enrollment = db.Enrollments.Find(id);
-            db.Enrollments.Remove(enrollment);
-            db.SaveChanges();
-            return RedirectToAction("EnrollmentsForActivity", "Activity", new { id = enrollment.ActivityID });      
+            try
+            {
+                Enrollment enrollment = db.Enrollments.Find(id);
+                db.Enrollments.Remove(enrollment);
+                db.SaveChanges();
+                return RedirectToAction("EnrollmentsForActivity", "Activity", new { id = enrollment.ActivityID });
+            }
+            catch(DataException /*Dex*/)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View();
+                  
         }
 
         protected override void Dispose(bool disposing)

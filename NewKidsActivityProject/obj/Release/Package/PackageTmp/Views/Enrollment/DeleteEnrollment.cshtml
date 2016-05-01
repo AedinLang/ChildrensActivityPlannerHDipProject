@@ -1,0 +1,56 @@
+﻿@model IEnumerable<NewKidsActivityProject.Models.Enrollment>
+
+@{
+    ViewBag.Title = "DeleteEnrollment";
+}
+
+<h3><u>Select enrollment to be removed</u></h3><br/>
+
+<table class="table-bordered">
+    <tr>
+        
+        <th>
+            Child
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kid.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity.NameOfActivity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity.DayOfActivity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity.TimeOfActivityValue)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Kid.FirstName + item.Kid.LastName, "Delete", new { id = item.EnrollmentID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kid.DOBInFormatWanted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activity.NameOfActivity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activity.DayOfActivity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activity.TimeOfActivityValue)
+            </td>
+            
+        </tr>
+    }
+
+</table>
+<br/>
+<div>
+      @Html.ActionLink("Go to Enrollments List", "Enrollments", "Activity")
+</div>

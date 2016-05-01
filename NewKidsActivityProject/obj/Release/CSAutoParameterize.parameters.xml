@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DAL.ActivityContext-Web.config Connection String" description="DAL.ActivityContext Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:hdipprojectkidsactivities.database.windows.net,1433;Database=KidsActivityService;User ID=alang@hdipprojectkidsactivities;Password=101Bananas;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Aedín\ Lang\\Source\\Repos\\ChildrensActivityPlannerHDipProject2\\NewKidsActivityProject\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DAL.ActivityContext']/@connectionString" />
+  </parameter>
+  <parameter name="NewKidsActivityProject.DAL.ActivityContext-Web.config Connection String" description="NewKidsActivityProject.DAL.ActivityContext Connection String used in web.config by the application to access the database." defaultValue="NewKidsActivityProject.DAL.ActivityContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Aedín\ Lang\\Source\\Repos\\ChildrensActivityPlannerHDipProject2\\NewKidsActivityProject\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NewKidsActivityProject.DAL.ActivityContext']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NewKidsActivityProject.Models.Activity>
+
+@{
+    ViewBag.Title = "AllActivities";
+}
+
+
+<h3><u>Select Activity to see Enrollment Details</u></h3>
+<h1></h1>
+
+<table class="table-bordered">
+    <tr>
+        <th>
+            Activity
+        </th>
+        <th>
+            Day
+        </th>
+        <th>
+            Time
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.ActionLink(item.NameOfActivity, "EnrollmentsForActivity", new { id = item.ActivityID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayOfActivity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfActivityValue)
+            </td>
+        </tr>
+    }
+
+</table>

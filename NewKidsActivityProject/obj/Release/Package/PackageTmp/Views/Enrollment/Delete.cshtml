@@ -1,0 +1,60 @@
+﻿@model NewKidsActivityProject.Models.Enrollment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3><u>Are you sure you want to <i>Disenroll</i> @Model.Kid.FirstName @Model.Kid.LastName from @Model.Activity.NameOfActivity?</u></h3>
+<div>
+    <h4>Enrollment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            Child
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kid.FirstName)
+            @Html.DisplayFor(model => model.Kid.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity.NameOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity.NameOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity.DayOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity.DayOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity.TimeOfActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity.TimeOfActivityValue)
+        </dd>
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Disenroll" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+<br/>
+<div>@Html.ActionLink("Enrollments List", "DeleteEnrollment")</div>

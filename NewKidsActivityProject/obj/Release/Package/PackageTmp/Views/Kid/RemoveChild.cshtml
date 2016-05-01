@@ -1,0 +1,35 @@
+﻿@model IEnumerable<NewKidsActivityProject.Models.Kid>
+
+@{
+    ViewBag.Title = "RemoveChild";
+}
+
+<h3><u>Select child to be removed from register</u></h3>
+<br/>
+<table class="table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.ActionLink(item.FirstName + item.LastName, "Delete", new { id = item.KidID })       <!--combine first and second name for link-->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+        </tr>
+    }
+
+
+</table>
+

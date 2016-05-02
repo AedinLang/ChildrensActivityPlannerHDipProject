@@ -22,7 +22,7 @@ namespace NewKidsActivityProject.Controllers
         }
 
         // GET: Activity Names - activity name only, use in dropdown list for Activity
-        public ActionResult Enrollments()           //SAME CODE AS ABOVE MUST BE SOMEWAY OF CHOOSING WHICH "SECOND" VIEW TO GO TO BASED ON CONDITIONS
+        public ActionResult Enrollments()           
         {
 
             return View(db.Activities.OrderBy(a=>a.NameOfActivity).ToList());

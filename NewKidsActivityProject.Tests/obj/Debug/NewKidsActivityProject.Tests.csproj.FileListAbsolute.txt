@@ -141,3 +141,5 @@ C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsAc
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\obj\Debug\NewKidsActivityProject.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\obj\Debug\NewKidsActivityProject.Tests.dll
 C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\obj\Debug\NewKidsActivityProject.Tests.pdb
+C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Aedín Lang\Source\Repos\ChildrensActivityPlannerHDipProject2\NewKidsActivityProject.Tests\bin\Debug\EntityFramework.SqlServer.xml
